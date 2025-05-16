@@ -1,6 +1,6 @@
 # 📥 Cara Download Video Lewat Network Capture (HLS Streaming)
 
-Streaming video di website seperti `spicevids.com` biasanya menggunakan metode **HLS (HTTP Live Streaming)** yang memecah video menjadi segmen-segmen kecil (`.ts`). Untuk mendownload video tersebut, kita perlu:
+Streaming video di website biasanya menggunakan metode **HLS (HTTP Live Streaming)** yang memecah video menjadi segmen-segmen kecil (`.ts`). Untuk mendownload video tersebut, kita perlu:
 
 1. 🔎 **Menemukan URL playlist `.m3u8`** dari tab Network di browser Developer Tools.
 2. 💾 **Menggunakan tool seperti `yt-dlp` atau script Python** untuk mendownload semua segmen dan menggabungkannya.
