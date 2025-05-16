@@ -51,4 +51,4 @@ yt-dlp "URL_m3u8_yang_kamu_dapat"
 > 🔒 **Legalitas:**  
 > Gunakan hanya untuk video yang kamu punya hak aksesnya.
 >
-> @copy @ZekkCode
+> &copy; @ZekkCode
