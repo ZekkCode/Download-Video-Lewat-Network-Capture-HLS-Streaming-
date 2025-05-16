@@ -1,54 +1,56 @@
-# 📥 Cara Download Video Lewat Network Capture (HLS Streaming)
+# 📥 Cara Download Video Streaming dari Situs Tanpa Tombol Download (HLS Network Capture)
 
-Streaming video di website biasanya menggunakan metode **HLS (HTTP Live Streaming)** yang memecah video menjadi segmen-segmen kecil (`.ts`). Untuk mendownload video tersebut, kita perlu:
-
-1. 🔎 **Menemukan URL playlist `.m3u8`** dari tab Network di browser Developer Tools.
-2. 💾 **Menggunakan tool seperti `yt-dlp` atau script Python** untuk mendownload semua segmen dan menggabungkannya.
+Situs streaming film (misal: bioskop online, layanan streaming gratis, dll) sering tidak menyediakan akses langsung untuk mengunduh video. Namun, banyak dari mereka menggunakan metode **HLS (HTTP Live Streaming)** yang memecah video menjadi segmen-segmen kecil (`.ts`). Dengan sedikit trik menggunakan Developer Tools di browser, kamu bisa menemukan URL video dan mendownloadnya!
 
 ---
 
-## 🚩 Cara menemukan URL `.m3u8`
+## 🚦 Langkah Umum
 
-> **Langkah-langkah:**
->
-> 1. Buka halaman video di browser.
-> 2. Tekan `F12` untuk membuka Developer Tools, lalu pergi ke tab **Network**.
-> 3. Filter ke `Media` atau `XHR`.
-> 4. Refresh/Reload halaman.
-> 5. Cari file dengan ekstensi `.m3u8`.
-> 6. Klik kanan dan **Copy URL** file tersebut.
+1. 🔎 **Temukan URL playlist `.m3u8`** melalui Network tab di browser.
+2. 💾 **Download video** menggunakan `yt-dlp` atau script Python sederhana.
 
 ---
 
-## ⚡ Download dengan `yt-dlp`
+## 🕵️‍♂️ Cara Menemukan URL `.m3u8` di Situs Streaming
 
-Cukup jalankan perintah berikut di terminal:
+> **Tips:**  
+> Cocok untuk situs web yang tidak menyediakan tombol download, misal: bioskopkeren, nontonxxi, LK21, dll.
 
-```bash
-yt-dlp "URL_m3u8_yang_kamu_dapat"
-```
-- Pastikan sudah install `yt-dlp` dan `ffmpeg` di sistemmu.
+1. **Buka halaman video** yang ingin kamu download.
+2. Tekan `F12` untuk membuka **Developer Tools**.
+3. Masuk ke tab **Network**.
+4. Filter ke `Media` atau ketik `.m3u8` di kolom filter.
+5. **Refresh** halaman jika perlu.
+6. Cari file dengan ekstensi `.m3u8` di daftar request.
+7. Klik kanan pada URL tersebut dan pilih **Copy link address**.
 
----
-
-## 🐍 Alternatif: Download dengan Python
-
-Jalankan script `script_download.py` dengan argumen URL `.m3u8`:
-
-```bash
-python script_download.py "URL_m3u8"
-```
+> 💡 **Catatan:**  
+> Jika tidak muncul file `.m3u8`, play dulu videonya beberapa detik lalu cek ulang di Network tab.
 
 ---
 
-### 📝 Contoh script_download.py (otomatis pakai `ffmpeg`):
+## ⚡ Download Video dengan [`yt-dlp`](https://github.com/yt-dlp/yt-dlp)
+
+1. Install yt-dlp & ffmpeg:
+   - **Windows**: Download yt-dlp.exe, install [ffmpeg](https://ffmpeg.org/download.html)
+   - **Linux/macOS**: `pip install -U yt-dlp` dan install ffmpeg via package manager
+
+2. Jalankan perintah:
+   ```bash
+   yt-dlp "URL_m3u8_yang_kamu_dapat"
+   ```
+
+---
+
+## 🐍 Alternatif: Download dengan Script Python
+
+Jalankan script di bawah ini untuk mendownload video dari file `.m3u8` menggunakan ffmpeg (pastikan ffmpeg sudah terpasang):
 
 ```python
 import sys
 import subprocess
 
 def download_hls(url, output="output.mp4"):
-    # Perintah ffmpeg untuk download dan gabung HLS
     command = [
         "ffmpeg",
         "-i", url,
@@ -66,24 +68,32 @@ if __name__ == "__main__":
     download_hls(sys.argv[1])
 ```
 
----
-
-## 📤 Cara upload ke GitHub
-
-1. Buat repo baru di GitHub, misal: `cara-download-video-lewat-network`
-2. Upload file berikut:
-    - `README.md`
-    - `script_download.py`
-    - `panduan_pakai_yt-dlp.txt`
-3. Commit dan push ke repo.
+> **Jalankan di terminal:**
+> ```bash
+> python script_download.py "URL_m3u8"
+> ```
 
 ---
 
-**Referensi & Tools:**
+## 📋 Tips & Catatan
+
+- **Legalitas:**  
+  Gunakan hanya untuk konsumsi pribadi dan video yang memang Anda punya hak aksesnya. Jangan reupload atau distribusi ulang tanpa izin.
+- **DRM:**  
+  Jika video menggunakan DRM (Digital Rights Management), metode ini tidak akan berhasil.
+- **Subtitle:**  
+  Untuk subtitle, biasanya ada file `.vtt` atau `.srt` di Network tab, bisa juga didownload.
+
+---
+
+## 🔗 Referensi & Tools
+
 - [yt-dlp GitHub](https://github.com/yt-dlp/yt-dlp)
 - [ffmpeg.org](https://ffmpeg.org/)
 - [HLS Streaming (Wikipedia)](https://en.wikipedia.org/wiki/HTTP_Live_Streaming)
 
 ---
 
-> 🎉 Selamat mencoba! Jika bermanfaat, silakan ⭐ repo ini.
+> 🎬 Selamat mencoba! Jika repo ini bermanfaat, silakan ⭐ (star) ya.
+>
+> &copy; 2025 ZekkCode
